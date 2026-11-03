@@ -5,7 +5,9 @@ function getBookCardTemplate(book, bookIndex) {
 
     return `
     <article class="book-card">
-                <h2 class="book-title-heading book-card-section">${book.name}</h2>
+                <header>
+                    <h2 class="book-title-heading book-card-section">${book.name}</h2>
+                </header>
 
                 <img src="./assets/icons/book_store_logo.svg" alt=""
                     class="book-card-section turqoise-top-border turqoise-bottom-border">

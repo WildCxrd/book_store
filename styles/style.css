@@ -42,12 +42,12 @@ main {
     width: 32px;
 }
 
-.page-header>p {
+.page-header>h1 {
     font-weight: bold;
     font-size: 2rem;
 }
 
-.page-header>p>strong {
+.page-header>h1>strong {
     color: var(--da-red);
 }
 
