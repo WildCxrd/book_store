@@ -24,7 +24,9 @@ function setLike(bookIndex, event) {
     bookFavCounter.innerHTML = book.likes;
 
     const buttonImage = event.currentTarget.children[0];
-    buttonImage.src = getLikeButtonImgSrc(book.liked);
+    const imgSrcAndAlt = getLikeButtonImgSrcAndAlt(book.liked);
+    buttonImage.src = imgSrcAndAlt[0];
+    buttonImage.alt = imgSrcAndAlt[1];
 
     renderBooks();
 }
@@ -39,11 +41,11 @@ function sendComment(bookIndex) {
     renderBooks();
 }
 
-function getLikeButtonImgSrc(liked) {
+function getLikeButtonImgSrcAndAlt(liked) {
     if (liked) {
-        return "./assets/icons/heart_red.png";
+        return ["./assets/icons/heart_red.png", "Ein rotes Herz."];
     }
     else {
-        return "./assets/icons/heart_black_outline.png";
+        return ["./assets/icons/heart_black_outline.png", "Ein transparentes Herz mit schwarzer Außenlinie."];
     }
 }

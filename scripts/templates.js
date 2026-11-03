@@ -1,6 +1,6 @@
 function getBookCardTemplate(book, bookIndex) {
     const price = book.price.toFixed(2).replace(".", ",");
-    const likeImgSrc = getLikeButtonImgSrc(book.liked);
+    const likeImgSrcAndAlt = getLikeButtonImgSrcAndAlt(book.liked);
     const commentTemplate = getCommentsTableContentTemplate(book.comments);
 
     return `
@@ -21,7 +21,7 @@ function getBookCardTemplate(book, bookIndex) {
                         <div class="fav">
                             <p id="favCounter_${bookIndex}">${book.likes}</p>
                             <button class="heart-button" onclick="setLike(${bookIndex}, event)">
-                                <img id="heartButtonImage" src="${likeImgSrc}" class="heart-button-img">
+                                <img id="heartButtonImage" src="${likeImgSrcAndAlt[0]}" class="heart-button-img" alt="${likeImgSrcAndAlt[1]}">
                             </button>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ function getBookCardTemplate(book, bookIndex) {
                     <div class="comment-input-wrapper">
                         <input type="text" id="commentInput_${bookIndex}" placeholder="Schreibe deinen Kommentar..." class="comment-input">
                         <button id="sendCommentButton" onclick="sendComment(${bookIndex})">
-                            <img src="./assets/icons/paper_plane.png" alt="">
+                            <img src="./assets/icons/paper_plane.png" alt="Ein Papierflugzeug.">
                         </button>
                     </div>
                 </div>
