@@ -1,5 +1,5 @@
 function getBookCardTemplate(book, bookIndex) {
-    const price = `${book.price}`.replace(".", ",");
+    const price = book.price.toFixed(2).replace(".", ",");
     const likeImgSrc = getLikeButtonImgSrc(book.liked);
     const commentTemplate = getCommentsTableContentTemplate(book.comments);
 
