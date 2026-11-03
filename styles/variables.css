@@ -1,4 +1,6 @@
 :root {
   --header-and-footer-background: rgb(21, 60, 75);
   --da-red: rgb(253, 91, 79);
+
+  --book-card-border: 3px solid rgb(52, 151, 197);
 }

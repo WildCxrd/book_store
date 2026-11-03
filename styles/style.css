@@ -17,6 +17,12 @@ main {
     background: rgba(6, 23, 30, 1);
 }
 
+#bookCardsSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .page-header {
     background-color: var(--header-and-footer-background);
 
@@ -39,12 +45,6 @@ main {
 
 .page-header>p>strong {
     color: var(--da-red);
-}
-
-.book-cards-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .page-footer {
