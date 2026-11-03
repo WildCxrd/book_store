@@ -1,7 +1,7 @@
 function getBookCardTemplate(book, bookIndex) {
     const price = `${book.price}`.replace(".", ",");
     const likeImgSrc = getLikeButtonImgSrc(book.liked);
-    const commentTemplate = getCommentTemplate(book.comments);
+    const commentTemplate = getCommentsTableContentTemplate(book.comments);
 
     return `
     <article class="book-card">
@@ -49,8 +49,8 @@ function getBookCardTemplate(book, bookIndex) {
                     </div>
 
                     <div class="comment-input-wrapper">
-                        <input type="text" id="commentInput" placeholder="Schreibe deinen Kommentar...">
-                        <button id="sendCommentButton">
+                        <input type="text" id="commentInput_${bookIndex}" placeholder="Schreibe deinen Kommentar..." class="comment-input">
+                        <button id="sendCommentButton" onclick="sendComment(${bookIndex})">
                             <img src="./assets/icons/paper_plane.png" alt="">
                         </button>
                     </div>
@@ -59,7 +59,7 @@ function getBookCardTemplate(book, bookIndex) {
     `;
 }
 
-function getCommentTemplate(comments) {
+function getCommentsTableContentTemplate(comments) {
     let commentsTableContent = "";
 
     comments.forEach(comment => {

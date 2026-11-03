@@ -29,6 +29,16 @@ function setLike(bookIndex, event) {
     renderBooks();
 }
 
+function sendComment(bookIndex) {
+    const book = BOOKS[bookIndex];
+    const commentInput = document.getElementById(`commentInput_${bookIndex}`);
+    const trimmedComment = commentInput.value.trim();
+
+    book.comments.push({name: "WildCard", comment: trimmedComment});
+
+    renderBooks();
+}
+
 function getLikeButtonImgSrc(liked) {
     if (liked) {
         return "./assets/icons/heart_red.png";

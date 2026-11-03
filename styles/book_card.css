@@ -10,17 +10,6 @@
     vertical-align: top;
 }
 
-#commentInput {
-    width: 90%;
-
-    background-color: rgb(27, 75, 94);
-
-    padding: 6px;
-
-    border: unset;
-    border-bottom: var(--book-card-border);
-}
-
 #sendCommentButton {
     all: unset;
 
@@ -117,6 +106,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.comment-input {
+    width: 90%;
+
+    background-color: rgb(27, 75, 94);
+
+    padding: 6px;
+
+    border: unset;
+    border-bottom: var(--book-card-border);
 }
 
 .turqoise-top-border {
