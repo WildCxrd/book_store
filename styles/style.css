@@ -29,10 +29,12 @@ main {
 
 .page-header {
     background-color: var(--header-and-footer-background);
+    text-align: center;
 
     padding: 20px 10%;
 
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 10px;
 }
@@ -55,4 +57,20 @@ main {
     background-color: var(--header-and-footer-background);
 
     padding: 40px 10%;
+}
+
+
+@media screen and (max-width: 426px) {
+    .page-header {
+        gap: 5px;
+    }
+
+    .page-header>img {
+        height: 24px;
+        width: 24px;
+    }
+
+    .page-header>h1 {
+        font-size: 1.5rem;
+    }
 }

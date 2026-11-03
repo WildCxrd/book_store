@@ -139,3 +139,18 @@ td {
 .turqoise-bottom-border {
     border-bottom: var(--book-card-border);
 }
+
+
+@media screen and (max-width: 426px) {
+    .book-title-heading {
+        font-size: 1.1rem;
+    }
+
+    .price{
+        font-size: 1.1rem;
+    }
+
+    .book-card-comments>h3{
+        font-size: 1.1rem;
+    }
+}
