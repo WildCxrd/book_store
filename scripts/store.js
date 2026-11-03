@@ -1,10 +1,15 @@
+let onlyShowLikedBooks = false;
+
 function renderBooks() {
     const bookCardsSection = document.getElementById("bookCardsSection");
     bookCardsSection.innerHTML = "";
 
     for (let bookIndex = 0; bookIndex < BOOKS.length; bookIndex++) {
         const book = BOOKS[bookIndex];
-        bookCardsSection.innerHTML += getBookCardTemplate(book, bookIndex)
+
+        if (onlyShowLikedBooks && book.liked || !onlyShowLikedBooks) {
+            bookCardsSection.innerHTML += getBookCardTemplate(book, bookIndex)
+        }
     }
 }
 
@@ -36,12 +41,24 @@ function sendComment(bookIndex) {
     const commentInput = document.getElementById(`commentInput_${bookIndex}`);
     const trimmedComment = commentInput.value.trim();
 
-    book.comments.push({name: "WildCard", comment: trimmedComment});
+    book.comments.push({ name: "WildCard", comment: trimmedComment });
 
     renderBooks();
 
     const commentsTableWrapper = document.getElementById(`commentsTableWrapper_${bookIndex}`);
     commentsTableWrapper.scrollTop = commentsTableWrapper.scrollHeight;
+}
+
+function toggleLikedFilter() {
+    const filterButton = document.getElementById("filterButton");
+
+    onlyShowLikedBooks = !onlyShowLikedBooks;
+    renderBooks();
+
+    const filterButtonImage = filterButton.children[0];
+    const imgSrcAndAlt = getLikeButtonImgSrcAndAlt(onlyShowLikedBooks);
+    filterButtonImage.src = imgSrcAndAlt[0];
+    filterButtonImage.alt = imgSrcAndAlt[1];
 }
 
 function getLikeButtonImgSrcAndAlt(liked) {
