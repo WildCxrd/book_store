@@ -44,7 +44,7 @@ function getBookCardTemplate(book, bookIndex) {
                 <div class="book-card-comments book-card-section">
                     <h3>Kommentare</h3>
 
-                    <div class="comments-table-wrapper">
+                    <div id="commentsTableWrapper_${bookIndex}" class="comments-table-wrapper">
                         <table id="commentsTable">
                         ${commentTemplate}
                         </table>

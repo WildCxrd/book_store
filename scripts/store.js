@@ -39,6 +39,9 @@ function sendComment(bookIndex) {
     book.comments.push({name: "WildCard", comment: trimmedComment});
 
     renderBooks();
+
+    const commentsTableWrapper = document.getElementById(`commentsTableWrapper_${bookIndex}`);
+    commentsTableWrapper.scrollTop = commentsTableWrapper.scrollHeight;
 }
 
 function getLikeButtonImgSrcAndAlt(liked) {
