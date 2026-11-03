@@ -9,7 +9,7 @@ function getBookCardTemplate(book, bookIndex) {
                     <h2 class="book-title-heading book-card-section">${book.name}</h2>
                 </header>
 
-                <img src="./assets/icons/book_store_logo.svg" alt=""
+                <img src="./assets/img/${book.img}" alt="${book.imgAlt}"
                     class="book-card-section turqoise-top-border turqoise-bottom-border">
 
                 <div class="book-card-meta-info book-card-section turqoise-bottom-border">
