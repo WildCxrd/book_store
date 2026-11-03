@@ -1,5 +1,6 @@
 function renderBooks() {
     const bookCardsSection = document.getElementById("bookCardsSection");
+    bookCardsSection.innerHTML = "";
 
     for (let bookIndex = 0; bookIndex < BOOKS.length; bookIndex++) {
         const book = BOOKS[bookIndex];
