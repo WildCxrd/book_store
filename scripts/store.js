@@ -1,59 +1,40 @@
 let onlyShowLikedBooks = false;
 
 function initialize() {
+    moveBooksFromScriptToLocalStorage();
     renderBooks();
     setFilterButtonLabelText();
+}
+
+function moveBooksFromScriptToLocalStorage() {
+    BOOKS.forEach(bookInScript => {
+        const bookInLocalStorage = getBookFromLocalStorage(bookInScript.id);
+
+        if (bookInLocalStorage == null) {
+            saveBookInLocalStorage(bookInScript);
+        }
+    });
 }
 
 function renderBooks() {
     const bookCardsSection = document.getElementById("bookCardsSection");
     bookCardsSection.innerHTML = "";
 
-    for (let bookIndex = 0; bookIndex < BOOKS.length; bookIndex++) {
-        const book = BOOKS[bookIndex];
+    const books = getAllBooksFromLocalStorage();
 
+    books.forEach(book => {
         if (onlyShowLikedBooks && book.liked || !onlyShowLikedBooks) {
             const price = book.price.toFixed(2).replace(".", ",");
             const likeImgSrcAndAlt = getLikeButtonImgSrcAndAlt(book.liked);
-            const allComments = getAllComments(book, bookIndex);
-            const commentsTableContent = getCommentsTableContent(allComments);
+            const commentsTableContent = getCommentsTableContent(book.comments);
 
-            bookCardsSection.innerHTML += getBookCardTemplate(book, bookIndex, price, likeImgSrcAndAlt, commentsTableContent)
+            bookCardsSection.innerHTML += getBookCardTemplate(book, price, likeImgSrcAndAlt, commentsTableContent)
         }
-    }
-}
-
-function sendComment(bookIndex) {
-    const commentInput = document.getElementById(`commentInput_${bookIndex}`);
-    const trimmedComment = commentInput.value.trim();
-
-    if (trimmedComment != "") {
-        const newComment = { name: "WildCard", comment: trimmedComment };
-        saveCommentInLocalStorage(bookIndex, newComment);
-
-        renderBooks();
-
-        const commentsTableWrapper = document.getElementById(`commentsTableWrapper_${bookIndex}`);
-        commentsTableWrapper.scrollTop = commentsTableWrapper.scrollHeight;
-    }
-}
-
-function saveCommentInLocalStorage(bookIndex, comment) {
-    const commentsInLocalStorageArray = getCommentsArrayFromLocalStorage(bookIndex);
-
-    if (commentsInLocalStorageArray.length == 0) {
-        const newCommentsArray = [comment];
-        localStorage.setItem(bookIndex, JSON.stringify(newCommentsArray));
-    }
-    else {
-        const allComments = commentsInLocalStorageArray.concat(comment);
-        localStorage.setItem(bookIndex, JSON.stringify(allComments));
-    }
+    });
 }
 
 function toggleLikedFilter() {
     const filterButton = document.getElementById("filterButton");
-
 
     onlyShowLikedBooks = !onlyShowLikedBooks;
     renderBooks();
@@ -66,27 +47,44 @@ function toggleLikedFilter() {
     setFilterButtonLabelText();
 }
 
-function getAllComments(book, bookIndex) {
-    const predefinedComments = book.comments;
-    const commentsInLocalStorage = getCommentsArrayFromLocalStorage(bookIndex);
+function sendComment(bookId) {
+    const commentInput = document.getElementById(`commentInput_${bookId}`);
+    const trimmedComment = commentInput.value.trim();
 
-    if (commentsInLocalStorage.length > 0) {
-        return predefinedComments.concat(commentsInLocalStorage);
-    }
-    else {
-        return predefinedComments;
+    if (trimmedComment != "") {
+        const book = getBookFromLocalStorage(bookId);
+        const newComment = { name: "WildCard", comment: trimmedComment };
+        book.comments.push(newComment);
+        saveBookInLocalStorage(book);
+
+        renderBooks();
+
+        const commentsTableWrapper = document.getElementById(`commentsTableWrapper_${bookId}`);
+        commentsTableWrapper.scrollTop = commentsTableWrapper.scrollHeight;
     }
 }
 
-function getCommentsArrayFromLocalStorage(bookIndex) {
-    const bookIndexWithComments = localStorage.getItem(bookIndex);
+function getAllBooksFromLocalStorage() {
+    const allBooks = [];
+    const keysInLocalStorage = Object.keys(localStorage);
 
-    if (bookIndexWithComments != null) {
-        return JSON.parse(bookIndexWithComments);
-    }
-    else {
-        return [];
-    }
+    keysInLocalStorage.forEach(element => {
+        if (element.startsWith("book_")) {
+            const book = JSON.parse(localStorage.getItem(element));
+            allBooks.push(book);
+        }
+    });
+
+    return allBooks.toSorted((bookOne, bookTwo) => bookOne.publishedYear - bookTwo.publishedYear);
+}
+
+function getBookFromLocalStorage(bookId) {
+    const bookKey = getBookKey(bookId);
+    return JSON.parse(localStorage.getItem(bookKey));
+}
+
+function getBookKey(bookId) {
+    return `book_${bookId}`;
 }
 
 function getLikeButtonImgSrcAndAlt(liked) {
@@ -108,8 +106,8 @@ function getCommentsTableContent(comments) {
     return commentsTableContent;
 }
 
-function setLike(bookIndex) {
-    const book = BOOKS[bookIndex];
+function setLike(bookId) {
+    const book = getBookFromLocalStorage(bookId);
 
     book.liked = !book.liked;
     if (book.liked) {
@@ -119,24 +117,23 @@ function setLike(bookIndex) {
         book.likes--;
     }
 
-    setBookLikesCounter(bookIndex);
-    setBookButtonImage(bookIndex);
+    saveBookInLocalStorage(book);
 
     renderBooks();
 }
 
-function setBookLikesCounter(bookIndex) {
-    const book = BOOKS[bookIndex];
-    const bookLikesCounter = document.getElementById(`likesCounter_${bookIndex}`);
+function setBookLikesCounter(bookId) {
+    const book = getBookFromLocalStorage(bookId);
+    const bookLikesCounter = document.getElementById(`likesCounter_${bookId}`);
 
     bookLikesCounter.innerHTML = book.likes;
 }
 
-function setBookButtonImage(bookIndex) {
-    const book = BOOKS[bookIndex];
-    const buttonImage = document.getElementById(`heartButtonImage_${bookIndex}`);
-
+function setBookHeartButtonImage(bookId) {
+    const book = getBookFromLocalStorage(bookId);
+    const buttonImage = document.getElementById(`heartButtonImage_${bookId}`);
     const imgSrcAndAlt = getLikeButtonImgSrcAndAlt(book.liked);
+
     buttonImage.src = imgSrcAndAlt[0];
     buttonImage.alt = imgSrcAndAlt[1];
 }
@@ -150,4 +147,9 @@ function setFilterButtonLabelText() {
     else {
         filterButtonLabel.innerHTML = "Es werden alle Bücher angezeigt";
     }
+}
+
+function saveBookInLocalStorage(book) {
+    const bookKey = getBookKey(book.id);
+    localStorage.setItem(bookKey, JSON.stringify(book));
 }

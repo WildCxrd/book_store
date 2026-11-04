@@ -1,4 +1,4 @@
-function getBookCardTemplate(book, bookIndex, price, likeImgSrcAndAltArray, commentsTableContent) {
+function getBookCardTemplate(book, price, likeImgSrcAndAltArray, commentsTableContent) {
     return `
         <article class="book-card">
             <header>
@@ -15,9 +15,9 @@ function getBookCardTemplate(book, bookIndex, price, likeImgSrcAndAltArray, comm
                         <p>€</p>
                     </div>
                     <div class="fav">
-                        <p id="likesCounter_${bookIndex}">${book.likes}</p>
-                        <button class="heart-button" onclick="setLike(${bookIndex})">
-                            <img id="heartButtonImage_${bookIndex}" src="${likeImgSrcAndAltArray[0]}" class="heart-button-img" alt="${likeImgSrcAndAltArray[1]}">
+                        <p id="likesCounter_${book.id}">${book.likes}</p>
+                        <button class="heart-button" onclick="setLike(${book.id})">
+                            <img id="heartButtonImage_${book.id}" src="${likeImgSrcAndAltArray[0]}" class="heart-button-img" alt="${likeImgSrcAndAltArray[1]}">
                         </button>
                     </div>
                 </div>
@@ -40,15 +40,15 @@ function getBookCardTemplate(book, bookIndex, price, likeImgSrcAndAltArray, comm
             <div class="book-card-comments book-card-section">
                 <h3>Kommentare</h3>
 
-                <div id="commentsTableWrapper_${bookIndex}" class="comments-table-wrapper">
+                <div id="commentsTableWrapper_${book.id}" class="comments-table-wrapper">
                     <table id="commentsTable">
                     ${commentsTableContent}
                     </table>
                 </div>
 
                 <div class="comment-input-wrapper">
-                    <input type="text" id="commentInput_${bookIndex}" placeholder="Schreibe deinen Kommentar..." class="comment-input">
-                    <button id="sendCommentButton" onclick="sendComment(${bookIndex})">
+                    <input type="text" id="commentInput_${book.id}" placeholder="Schreibe deinen Kommentar..." class="comment-input">
+                    <button id="sendCommentButton" onclick="sendComment(${book.id})">
                         <img src="./assets/icons/paper_plane.png" alt="Ein Papierflugzeug.">
                     </button>
                 </div>
