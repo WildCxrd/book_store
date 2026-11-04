@@ -138,7 +138,7 @@ const BOOKS = [
         ]
     },
     {
-        "id": "6",
+        "id": "7",
         "name": "Jenseits der Sterne",
         "img": "stars.webp",
         "imgAlt": "Die Sterne im All, ein Raumschiff fliegt auf sie zu.",
@@ -156,7 +156,7 @@ const BOOKS = [
         ]
     },
     {
-        "id": "7",
+        "id": "8",
         "name": "Das verborgene Königreich",
         "img": "kingdom.jpg",
         "imgAlt": "Türme auf Felsen, oberhalb der Wolkenlinie.",
@@ -174,7 +174,7 @@ const BOOKS = [
         ]
     },
     {
-        "id": "8",
+        "id": "9",
         "name": "Liebe in Zeiten des Krieges",
         "img": "war_love.jpg",
         "imgAlt": "Ein küssendes Paar mit Kleidung der 1940er Jahre.",
