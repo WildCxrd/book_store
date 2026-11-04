@@ -1,5 +1,6 @@
 const BOOKS = [
     {
+        "id": "1",
         "name": "Die Geheimnisse des Ozeans",
         "img": "ocean.jpg",
         "imgAlt": "Ein Ozean.",
@@ -33,6 +34,7 @@ const BOOKS = [
         ]
     },
     {
+        "id": "2",
         "name": "Der vergessene Pfad",
         "img": "path.jpg",
         "imgAlt": "Ein verborgener Pfad im Grünen.",
@@ -45,6 +47,7 @@ const BOOKS = [
         "comments": []
     },
     {
+        "id": "3",
         "name": "Die Farben des Himmels",
         "img": "sky.jpg",
         "imgAlt": "Der Himmel über einer Wiese mit Baum in der Mitte.",
@@ -78,6 +81,7 @@ const BOOKS = [
         ]
     },
     {
+        "id": "4",
         "name": "Das Rätsel der Zeit",
         "img": "time.jpg",
         "imgAlt": "Eine alte Taschenuhr im Sand.",
@@ -99,6 +103,7 @@ const BOOKS = [
         ]
     },
     {
+        "id": "5",
         "name": "Der letzte Wächter",
         "img": "sentinel.png",
         "imgAlt": "Ein Engel in einer Rüstung.",
@@ -111,6 +116,7 @@ const BOOKS = [
         "comments": []
     },
     {
+        "id": "6",
         "name": "Im Schatten des Mondes",
         "img": "moon.jpg",
         "imgAlt": "Der Mond am Nachthimmel.",
@@ -132,6 +138,7 @@ const BOOKS = [
         ]
     },
     {
+        "id": "6",
         "name": "Jenseits der Sterne",
         "img": "stars.webp",
         "imgAlt": "Die Sterne im All, ein Raumschiff fliegt auf sie zu.",
@@ -149,6 +156,7 @@ const BOOKS = [
         ]
     },
     {
+        "id": "7",
         "name": "Das verborgene Königreich",
         "img": "kingdom.jpg",
         "imgAlt": "Türme auf Felsen, oberhalb der Wolkenlinie.",
@@ -166,6 +174,7 @@ const BOOKS = [
         ]
     },
     {
+        "id": "8",
         "name": "Liebe in Zeiten des Krieges",
         "img": "war_love.jpg",
         "imgAlt": "Ein küssendes Paar mit Kleidung der 1940er Jahre.",

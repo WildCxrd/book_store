@@ -114,6 +114,10 @@ td {
     overflow-y: auto;
 }
 
+.comments-table-wrapper td {
+    overflow-wrap: anywhere;
+}
+
 .comment-input-wrapper {
     display: flex;
     justify-content: space-between;
@@ -146,11 +150,17 @@ td {
         font-size: 1.1rem;
     }
 
-    .price{
+    .price {
         font-size: 1.1rem;
     }
 
-    .book-card-comments>h3{
+    .book-card-comments>h3 {
         font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .comment-input {
+        width: 85%;
     }
 }
