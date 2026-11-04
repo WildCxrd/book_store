@@ -13,42 +13,13 @@ function renderBooks() {
         const book = BOOKS[bookIndex];
 
         if (onlyShowLikedBooks && book.liked || !onlyShowLikedBooks) {
-            bookCardsSection.innerHTML += getBookCardTemplate(book, bookIndex)
+            const price = book.price.toFixed(2).replace(".", ",");
+            const likeImgSrcAndAlt = getLikeButtonImgSrcAndAlt(book.liked);
+            const commentsTableContent = getCommentsTableContent(book.comments);
+
+            bookCardsSection.innerHTML += getBookCardTemplate(book, bookIndex, price, likeImgSrcAndAlt, commentsTableContent)
         }
     }
-}
-
-function setLike(bookIndex) {
-    const book = BOOKS[bookIndex];
-
-    book.liked = !book.liked;
-    if (book.liked) {
-        book.likes++;
-    }
-    else {
-        book.likes--;
-    }
-
-    setBookLikesCounter(bookIndex);
-    setBookButtonImage(bookIndex);
-
-    renderBooks();
-}
-
-function setBookLikesCounter(bookIndex) {
-    const book = BOOKS[bookIndex];
-    const bookLikesCounter = document.getElementById(`likesCounter_${bookIndex}`);
-
-    bookLikesCounter.innerHTML = book.likes;
-}
-
-function setBookButtonImage(bookIndex) {
-    const book = BOOKS[bookIndex];
-    const buttonImage = document.getElementById(`heartButtonImage_${bookIndex}`);
-
-    const imgSrcAndAlt = getLikeButtonImgSrcAndAlt(book.liked);
-    buttonImage.src = imgSrcAndAlt[0];
-    buttonImage.alt = imgSrcAndAlt[1];
 }
 
 function sendComment(bookIndex) {
@@ -88,6 +59,49 @@ function getLikeButtonImgSrcAndAlt(liked) {
     else {
         return ["./assets/icons/heart_black_outline.png", "Ein transparentes Herz mit schwarzer Außenlinie."];
     }
+}
+
+function getCommentsTableContent(comments) {
+    let commentsTableContent = "";
+
+    comments.forEach(comment => {
+        commentsTableContent += getCommentTemplate(comment);
+    });
+
+    return commentsTableContent;
+}
+
+function setLike(bookIndex) {
+    const book = BOOKS[bookIndex];
+
+    book.liked = !book.liked;
+    if (book.liked) {
+        book.likes++;
+    }
+    else {
+        book.likes--;
+    }
+
+    setBookLikesCounter(bookIndex);
+    setBookButtonImage(bookIndex);
+
+    renderBooks();
+}
+
+function setBookLikesCounter(bookIndex) {
+    const book = BOOKS[bookIndex];
+    const bookLikesCounter = document.getElementById(`likesCounter_${bookIndex}`);
+
+    bookLikesCounter.innerHTML = book.likes;
+}
+
+function setBookButtonImage(bookIndex) {
+    const book = BOOKS[bookIndex];
+    const buttonImage = document.getElementById(`heartButtonImage_${bookIndex}`);
+
+    const imgSrcAndAlt = getLikeButtonImgSrcAndAlt(book.liked);
+    buttonImage.src = imgSrcAndAlt[0];
+    buttonImage.alt = imgSrcAndAlt[1];
 }
 
 function setFilterButtonLabelText() {
