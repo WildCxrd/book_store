@@ -15,7 +15,8 @@ function renderBooks() {
         if (onlyShowLikedBooks && book.liked || !onlyShowLikedBooks) {
             const price = book.price.toFixed(2).replace(".", ",");
             const likeImgSrcAndAlt = getLikeButtonImgSrcAndAlt(book.liked);
-            const commentsTableContent = getCommentsTableContent(book.comments);
+            const allComments = getAllComments(book, bookIndex);
+            const commentsTableContent = getCommentsTableContent(allComments);
 
             bookCardsSection.innerHTML += getBookCardTemplate(book, bookIndex, price, likeImgSrcAndAlt, commentsTableContent)
         }
@@ -27,13 +28,26 @@ function sendComment(bookIndex) {
     const trimmedComment = commentInput.value.trim();
 
     if (trimmedComment != "") {
-        const book = BOOKS[bookIndex];
-        book.comments.push({ name: "WildCard", comment: trimmedComment });
+        const newComment = { name: "WildCard", comment: trimmedComment };
+        saveCommentInLocalStorage(bookIndex, newComment);
 
         renderBooks();
 
         const commentsTableWrapper = document.getElementById(`commentsTableWrapper_${bookIndex}`);
         commentsTableWrapper.scrollTop = commentsTableWrapper.scrollHeight;
+    }
+}
+
+function saveCommentInLocalStorage(bookIndex, comment) {
+    const commentsInLocalStorageArray = getCommentsArrayFromLocalStorage(bookIndex);
+
+    if (commentsInLocalStorageArray.length == 0) {
+        const newCommentsArray = [comment];
+        localStorage.setItem(bookIndex, JSON.stringify(newCommentsArray));
+    }
+    else {
+        const allComments = commentsInLocalStorageArray.concat(comment);
+        localStorage.setItem(bookIndex, JSON.stringify(allComments));
     }
 }
 
@@ -50,6 +64,29 @@ function toggleLikedFilter() {
     filterButtonImage.alt = imgSrcAndAlt[1];
 
     setFilterButtonLabelText();
+}
+
+function getAllComments(book, bookIndex) {
+    const predefinedComments = book.comments;
+    const commentsInLocalStorage = getCommentsArrayFromLocalStorage(bookIndex);
+
+    if (commentsInLocalStorage.length > 0) {
+        return predefinedComments.concat(commentsInLocalStorage);
+    }
+    else {
+        return predefinedComments;
+    }
+}
+
+function getCommentsArrayFromLocalStorage(bookIndex) {
+    const bookIndexWithComments = localStorage.getItem(bookIndex);
+
+    if (bookIndexWithComments != null) {
+        return JSON.parse(bookIndexWithComments);
+    }
+    else {
+        return [];
+    }
 }
 
 function getLikeButtonImgSrcAndAlt(liked) {
