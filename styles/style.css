@@ -39,7 +39,7 @@ main {
     background-color: var(--header-and-footer-background);
     text-align: center;
 
-    padding: 20px 5%;
+    padding: 20px max(5%, calc(50% - 720px));
 
     display: flex;
     justify-content: center;
@@ -82,7 +82,7 @@ main {
 .page-footer {
     background-color: var(--header-and-footer-background);
 
-    padding: 40px 10%;
+    padding: 40px max(5%, calc(50% - 720px));
 }
 
 @media screen and (max-width: 768px) {
