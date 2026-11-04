@@ -1,5 +1,10 @@
 let onlyShowLikedBooks = false;
 
+function initialize() {
+    renderBooks();
+    setFilterButtonLabelText();
+}
+
 function renderBooks() {
     const bookCardsSection = document.getElementById("bookCardsSection");
     bookCardsSection.innerHTML = "";
@@ -52,6 +57,7 @@ function sendComment(bookIndex) {
 function toggleLikedFilter() {
     const filterButton = document.getElementById("filterButton");
 
+
     onlyShowLikedBooks = !onlyShowLikedBooks;
     renderBooks();
 
@@ -59,6 +65,8 @@ function toggleLikedFilter() {
     const imgSrcAndAlt = getLikeButtonImgSrcAndAlt(onlyShowLikedBooks);
     filterButtonImage.src = imgSrcAndAlt[0];
     filterButtonImage.alt = imgSrcAndAlt[1];
+
+    setFilterButtonLabelText();
 }
 
 function getLikeButtonImgSrcAndAlt(liked) {
@@ -67,5 +75,16 @@ function getLikeButtonImgSrcAndAlt(liked) {
     }
     else {
         return ["./assets/icons/heart_black_outline.png", "Ein transparentes Herz mit schwarzer Außenlinie."];
+    }
+}
+
+function setFilterButtonLabelText() {
+    const filterButtonLabel = document.getElementById("filterButtonLabel");
+
+    if (onlyShowLikedBooks) {
+        filterButtonLabel.innerHTML = "Es werden nur Favoriten angezeigt";
+    }
+    else {
+        filterButtonLabel.innerHTML = "Es werden alle Bücher angezeigt";
     }
 }

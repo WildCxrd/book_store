@@ -19,15 +19,19 @@
     <link rel="shortcut icon" href="assets/icons/book_store_logo.svg" type="image/x-icon">
 </head>
 
-<body onload="renderBooks(false)">
+<body onload="initialize()">
     <header class="page-header">
         <img src="./assets/icons/book_store_logo.svg"
             alt="A minimalistic open book in front of a blue background - the logo of the book store.">
         <h1><strong>DA</strong> Book Store</h1>
 
-        <button id="filterButton" class="filter-button" onclick="toggleLikedFilter()">
-            <img src="./assets/icons/heart_black_outline.png" alt="Ein transparentes Herz mit schwarzer Außenlinie.">
-        </button>
+        <div class="filter-button-wrapper">
+            <button id="filterButton" class="filter-button" onclick="toggleLikedFilter()">
+                <img src="./assets/icons/heart_black_outline.png" alt="Ein transparentes Herz mit schwarzer Außenlinie."
+                    class="heart-button-img">
+            </button>
+            <label id="filterButtonLabel" for="filterButton"></label>
+        </div>
     </header>
 
     <main>
