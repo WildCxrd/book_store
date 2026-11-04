@@ -19,9 +19,9 @@ function getBookCardTemplate(book, bookIndex) {
                             <p>€</p>
                         </div>
                         <div class="fav">
-                            <p id="favCounter_${bookIndex}">${book.likes}</p>
-                            <button class="heart-button" onclick="setLike(${bookIndex}, event)">
-                                <img id="heartButtonImage" src="${likeImgSrcAndAlt[0]}" class="heart-button-img" alt="${likeImgSrcAndAlt[1]}">
+                            <p id="likesCounter_${bookIndex}">${book.likes}</p>
+                            <button class="heart-button" onclick="setLike(${bookIndex})">
+                                <img id="heartButtonImage_${bookIndex}" src="${likeImgSrcAndAlt[0]}" class="heart-button-img" alt="${likeImgSrcAndAlt[1]}">
                             </button>
                         </div>
                     </div>

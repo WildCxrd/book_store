@@ -18,12 +18,10 @@ function renderBooks() {
     }
 }
 
-function setLike(bookIndex, event) {
+function setLike(bookIndex) {
     const book = BOOKS[bookIndex];
-    const bookFavCounter = document.getElementById(`favCounter_${bookIndex}`);
 
     book.liked = !book.liked;
-
     if (book.liked) {
         book.likes++;
     }
@@ -31,14 +29,26 @@ function setLike(bookIndex, event) {
         book.likes--;
     }
 
-    bookFavCounter.innerHTML = book.likes;
+    setBookLikesCounter(bookIndex);
+    setBookButtonImage(bookIndex);
 
-    const buttonImage = event.currentTarget.children[0];
+    renderBooks();
+}
+
+function setBookLikesCounter(bookIndex) {
+    const book = BOOKS[bookIndex];
+    const bookLikesCounter = document.getElementById(`likesCounter_${bookIndex}`);
+
+    bookLikesCounter.innerHTML = book.likes;
+}
+
+function setBookButtonImage(bookIndex) {
+    const book = BOOKS[bookIndex];
+    const buttonImage = document.getElementById(`heartButtonImage_${bookIndex}`);
+
     const imgSrcAndAlt = getLikeButtonImgSrcAndAlt(book.liked);
     buttonImage.src = imgSrcAndAlt[0];
     buttonImage.alt = imgSrcAndAlt[1];
-
-    renderBooks();
 }
 
 function sendComment(bookIndex) {
