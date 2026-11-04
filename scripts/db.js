@@ -1,6 +1,8 @@
-const books = [
+const BOOKS = [
     {
         "name": "Die Geheimnisse des Ozeans",
+        "img": "ocean.jpg",
+        "imgAlt": "Ein Ozean.",
         "author": "Clara Meer",
         "likes": 1250,
         "liked": true,
@@ -32,6 +34,8 @@ const books = [
     },
     {
         "name": "Der vergessene Pfad",
+        "img": "path.jpg",
+        "imgAlt": "Ein verborgener Pfad im Grünen.",
         "author": "Maximilian Schwarz",
         "likes": 980,
         "liked": false,
@@ -42,6 +46,8 @@ const books = [
     },
     {
         "name": "Die Farben des Himmels",
+        "img": "sky.jpg",
+        "imgAlt": "Der Himmel über einer Wiese mit Baum in der Mitte.",
         "author": "Laura Blau",
         "likes": 1520,
         "liked": true,
@@ -73,6 +79,8 @@ const books = [
     },
     {
         "name": "Das Rätsel der Zeit",
+        "img": "time.jpg",
+        "imgAlt": "Eine alte Taschenuhr im Sand.",
         "author": "Alexander Weiss",
         "likes": 750,
         "liked": false,
@@ -92,6 +100,8 @@ const books = [
     },
     {
         "name": "Der letzte Wächter",
+        "img": "sentinel.png",
+        "imgAlt": "Ein Engel in einer Rüstung.",
         "author": "Sabine Grün",
         "likes": 1300,
         "liked": true,
@@ -102,6 +112,8 @@ const books = [
     },
     {
         "name": "Im Schatten des Mondes",
+        "img": "moon.jpg",
+        "imgAlt": "Der Mond am Nachthimmel.",
         "author": "Philipp Silber",
         "likes": 890,
         "liked": false,
@@ -121,6 +133,8 @@ const books = [
     },
     {
         "name": "Jenseits der Sterne",
+        "img": "stars.webp",
+        "imgAlt": "Die Sterne im All, ein Raumschiff fliegt auf sie zu.",
         "author": "Oliver Schwarz",
         "likes": 1450,
         "liked": true,
@@ -136,6 +150,8 @@ const books = [
     },
     {
         "name": "Das verborgene Königreich",
+        "img": "kingdom.jpg",
+        "imgAlt": "Türme auf Felsen, oberhalb der Wolkenlinie.",
         "author": "Elena Gold",
         "likes": 920,
         "liked": false,
@@ -151,6 +167,8 @@ const books = [
     },
     {
         "name": "Liebe in Zeiten des Krieges",
+        "img": "war_love.jpg",
+        "imgAlt": "Ein küssendes Paar mit Kleidung der 1940er Jahre.",
         "author": "Emilia Rot",
         "likes": 1800,
         "liked": true,

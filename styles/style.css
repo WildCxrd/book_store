@@ -1,0 +1,107 @@
+body {
+    min-height: 100dvh;
+
+    font-family: 'Figtree';
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+
+    background: rgba(6, 23, 30, 1);
+}
+
+#bookCardsSection {
+    width: 100%;
+    padding: 40px max(5%, calc(50% - 720px));
+
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+#filterButtonLabel {
+    width: 250px;
+    text-align: left;
+}
+
+.page-header {
+    width: 100%;
+
+    background-color: var(--header-and-footer-background);
+    text-align: center;
+
+    padding: 20px max(5%, calc(50% - 720px));
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-header>img {
+    height: 32px;
+    width: 32px;
+}
+
+.page-header>h1 {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.page-header>h1>strong {
+    color: var(--da-red);
+}
+
+.filter-button-wrapper {
+    margin-left: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.filter-button {
+    all: unset;
+
+    height: 32px;
+    width: 32px;
+
+    cursor: pointer;
+}
+
+.page-footer {
+    background-color: var(--header-and-footer-background);
+
+    padding: 40px max(5%, calc(50% - 720px));
+}
+
+@media screen and (max-width: 768px) {
+    #filterButtonLabel {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .page-header {
+        gap: 5px;
+    }
+
+    .page-header>img {
+        height: 24px;
+        width: 24px;
+    }
+
+    .page-header>h1 {
+        font-size: 1.5rem;
+    }
+}
