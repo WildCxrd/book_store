@@ -141,7 +141,7 @@ td {
 }
 
 
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 425px) {
     .book-title-heading {
         font-size: 1.1rem;
     }

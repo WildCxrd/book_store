@@ -22,6 +22,7 @@ main {
     padding: 40px max(5%, calc(50% - 720px));
 
     display: flex;
+    flex: 1;
     justify-content: center;
     gap: 40px;
     flex-wrap: wrap;
@@ -38,7 +39,7 @@ main {
     background-color: var(--header-and-footer-background);
     text-align: center;
 
-    padding: 20px 10%;
+    padding: 20px 5%;
 
     display: flex;
     justify-content: center;
@@ -84,8 +85,13 @@ main {
     padding: 40px 10%;
 }
 
+@media screen and (max-width: 768px) {
+    #filterButtonLabel {
+        display: none;
+    }
+}
 
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 425px) {
     .page-header {
         gap: 5px;
     }
