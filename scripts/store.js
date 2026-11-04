@@ -52,16 +52,18 @@ function setBookButtonImage(bookIndex) {
 }
 
 function sendComment(bookIndex) {
-    const book = BOOKS[bookIndex];
     const commentInput = document.getElementById(`commentInput_${bookIndex}`);
     const trimmedComment = commentInput.value.trim();
 
-    book.comments.push({ name: "WildCard", comment: trimmedComment });
+    if (trimmedComment != "") {
+        const book = BOOKS[bookIndex];
+        book.comments.push({ name: "WildCard", comment: trimmedComment });
 
-    renderBooks();
+        renderBooks();
 
-    const commentsTableWrapper = document.getElementById(`commentsTableWrapper_${bookIndex}`);
-    commentsTableWrapper.scrollTop = commentsTableWrapper.scrollHeight;
+        const commentsTableWrapper = document.getElementById(`commentsTableWrapper_${bookIndex}`);
+        commentsTableWrapper.scrollTop = commentsTableWrapper.scrollHeight;
+    }
 }
 
 function toggleLikedFilter() {
